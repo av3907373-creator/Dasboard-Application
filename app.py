@@ -10,7 +10,7 @@ st.set_page_config(page_title='Amazon Product Analysis Dashboard', layout='wide'
 # Load the preprocessed data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('amazon.csv')
+    df = pd.read_csv('amazon_preprocessed.csv')
     return df
 
 df = load_data()
@@ -21,24 +21,15 @@ st.title('Amazon Product Analysis Dashboard')
 # Sidebar for filters
 st.sidebar.header('Filter Products')
 
-# Clean rating column
-df['rating'] = pd.to_numeric(df['rating'], errors='coerce')
-
-if df['rating'].dropna().empty:
-    st.error("Rating column has no valid numeric values.")
-    st.stop()
-
-min_rating = float(df['rating'].min())
-max_rating = float(df['rating'].max())
-
+# Rating slider
+min_rating = df['rating'].min()
+max_rating = df['rating'].max()
 rating_selection = st.sidebar.slider(
     'Select a Rating Range',
-    min_value=min_rating,
-    max_value=max_rating,
-    value=(min_rating, max_rating),
+    min_value=float(min_rating),
+    max_value=float(max_rating),
+    value=(float(min_rating), float(max_rating)),
     step=0.1
-)
-
 )
 
 # Discount Percentage slider
@@ -149,7 +140,7 @@ st.set_page_config(page_title='Amazon Product Analysis Dashboard', layout='wide'
 # Load the preprocessed data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('amazon.csv')
+    df = pd.read_csv('amazon_preprocessed.csv')
     return df
 
 df = load_data()
