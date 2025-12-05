@@ -28,7 +28,7 @@ rating_selection = st.sidebar.slider(
     'Select a Rating Range',
     min_value=float(min_rating),
     max_value=float(max_rating),
-    value=(float(min_rating), float(max_rating)),
+    value=(float(min_rating),float(max_rating)),
     step=0.1
 )
 
