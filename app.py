@@ -26,10 +26,15 @@ min_rating = df['rating'].min()
 max_rating = df['rating'].max()
 rating_selection = st.sidebar.slider(
     'Select a Rating Range',
-    min_value=float(min_rating),
-    max_value=float(max_rating),
-    value=(float(min_rating), float(max_rating)),
-    step=0.1
+   # Clean numeric columns
+df['rating'] = pd.to_numeric(df['rating'], errors='coerce')
+df['discount_percentage'] = pd.to_numeric(df['discount_percentage'], errors='coerce')
+df['discounted_price'] = pd.to_numeric(df['discounted_price'], errors='coerce')
+df['actual_price'] = pd.to_numeric(df['actual_price'], errors='coerce')
+
+# Drop invalid rows
+df = df.dropna(subset=['rating', 'discount_percentage', 'discounted_price', 'actual_price'])
+
 )
 
 # Discount Percentage slider
