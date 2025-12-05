@@ -10,7 +10,7 @@ st.set_page_config(page_title='Amazon Product Analysis Dashboard', layout='wide'
 # Load the preprocessed data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('amazon_preprocessed.csv')
+    df = pd.read_csv('amazon.csv')
     return df
 
 df = load_data()
