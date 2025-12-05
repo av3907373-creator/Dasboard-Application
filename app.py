@@ -26,9 +26,9 @@ min_rating = df['rating'].min()
 max_rating = df['rating'].max()
 rating_selection = st.sidebar.slider(
     'Select a Rating Range',
-    min_value=double(min_rating),
-    max_value=double(max_rating),
-    value=(double(min_rating), double(max_rating)),
+    min_value=float(min_rating),
+    max_value=float(max_rating),
+    value=(float(min_rating), float(max_rating)),
     step=0.1
 )
 
