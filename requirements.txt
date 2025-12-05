@@ -1,5 +1,4 @@
-streamlit as st
-pandas as pd
-numpy as np
-plotly.express as px
-plotly.graph_objects as go
+streamlit
+pandas
+numpy
+plotly
