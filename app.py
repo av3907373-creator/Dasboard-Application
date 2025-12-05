@@ -21,15 +21,24 @@ st.title('Amazon Product Analysis Dashboard')
 # Sidebar for filters
 st.sidebar.header('Filter Products')
 
-# Rating slider
-min_rating = df['rating'].min()
-max_rating = df['rating'].max()
+# Clean rating column
+df['rating'] = pd.to_numeric(df['rating'], errors='coerce')
+
+if df['rating'].dropna().empty:
+    st.error("Rating column has no valid numeric values.")
+    st.stop()
+
+min_rating = float(df['rating'].min())
+max_rating = float(df['rating'].max())
+
 rating_selection = st.sidebar.slider(
     'Select a Rating Range',
-    min_value=float(min_rating),
-    max_value=float(max_rating),
-    value=(float(min_rating),float(max_rating)),
+    min_value=min_rating,
+    max_value=max_rating,
+    value=(min_rating, max_rating),
     step=0.1
+)
+
 )
 
 # Discount Percentage slider
